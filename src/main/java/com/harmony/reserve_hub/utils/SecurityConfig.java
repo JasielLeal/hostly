@@ -32,6 +32,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/users/create").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/verifyopt").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users/session").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/enterprises/create").permitAll()
                         .anyRequest().authenticated()
 
                 )

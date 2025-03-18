@@ -1,19 +1,12 @@
 package com.harmony.reserve_hub.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
 @Table(name = "Enterprises")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class Enterprise {
 
     @Id
@@ -21,13 +14,75 @@ public class Enterprise {
     private UUID id;
 
     @Column(nullable = false)
-    String name;
+    private String name;
 
     @Column(nullable = false)
-    String address;
+    private String address;
 
     @Column(nullable = false)
-    String phone;
+    private String phone;
 
+    private LocalDate createdAt = LocalDate.now();
 
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    private User userId;
+
+    public Enterprise() {}
+
+    public Enterprise(UUID id, String name, String address, String phone, LocalDate createdAt, User userId) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.createdAt = createdAt;
+        this.userId = userId;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
+    }
 }
