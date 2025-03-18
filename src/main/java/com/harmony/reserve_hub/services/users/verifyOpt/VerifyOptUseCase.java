@@ -21,7 +21,7 @@ public class VerifyOptUseCase {
         LocalDateTime today = LocalDateTime.now();
 
         if(user.getOptExpiration().isBefore(today)){
-            throw new CustomException("User has expired", HttpStatus.EXPECTATION_FAILED);
+            throw new CustomException("Code has expired", HttpStatus.EXPECTATION_FAILED);
         }
 
         user.setOptCode(null);
