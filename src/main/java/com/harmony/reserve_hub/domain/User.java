@@ -22,11 +22,35 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Plan plan = Plan.FREE;  // Plano padrão
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role = Role.MEMBER;  // Role padrão
+
     private String enterpriseName;
 
     private String optCode;
 
     private LocalDateTime optExpiration;
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 
     public LocalDateTime getOptExpiration() {
         return optExpiration;
@@ -97,4 +121,16 @@ public class User {
     public void setEnterpriseName(String enterpriseName) {
         this.enterpriseName = enterpriseName;
     }
+
+    public enum Role {
+        MEMBER,
+        MASTER
+    }
+
+    public enum Plan{
+        FREE,
+        STARTER,
+        DELUX,
+    }
 }
+
