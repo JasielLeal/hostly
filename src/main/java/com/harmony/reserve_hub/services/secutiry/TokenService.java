@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.security.Key;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("${api.secrete.token}")
+    @Value("${spring.api.secrete.token}")
     private String secret;
 
     public String generateToken(User user){
@@ -52,11 +53,24 @@ public class TokenService {
                     .getSubject();
 
         }catch (JWTVerificationException exception) {
+            System.out.println("Erro ao validar token: " + exception.getMessage());
             return null;
         }
     }
 
     private Instant generateExpirationToken(){
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
+    }
+
+    public String extractUserId(String token) {
+        try {
+            return JWT.require(Algorithm.HMAC256(secret))
+                    .build()
+                    .verify(token)
+                    .getClaim("id")
+                    .asString();
+        } catch (JWTVerificationException e) {
+            throw new RuntimeException("Invalid Token", e);
+        }
     }
 }
