@@ -1,8 +1,5 @@
 package com.harmony.reserve_hub.services.users.auth;
 
-import com.harmony.reserve_hub.repositories.users.UsersRepository;
-import com.harmony.reserve_hub.services.users.createUser.CreateUserDTO;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
