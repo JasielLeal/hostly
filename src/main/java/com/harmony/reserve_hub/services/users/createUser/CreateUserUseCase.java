@@ -25,8 +25,8 @@ public class CreateUserUseCase {
 
     public User execute(CreateUserDTO createUserDTO) {
 
-        var user = new User(null, createUserDTO.username(),
-                createUserDTO.email(), createUserDTO.password(), null, null, null);
+        var user = new User(createUserDTO.username(),
+                createUserDTO.email(), createUserDTO.password());
 
         usersRepository.findByEmail(user.getEmail()).ifPresent(existingUser -> {
             throw new CustomException("User already exists", HttpStatus.CONFLICT);

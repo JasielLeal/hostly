@@ -36,6 +36,47 @@ public class User {
 
     private LocalDateTime optExpiration;
 
+    private LocalDateTime createdAt = LocalDateTime.now();
+
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
+
+    // Construtores
+    public User() {
+    }
+
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.enterpriseName = null;
+        this.optCode = null;
+        this.optExpiration = null;
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+        this.plan = Plan.FREE;
+        this.role = Role.MEMBER;
+    }
+
+
+
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     public Plan getPlan() {
         return plan;
     }
@@ -68,18 +109,6 @@ public class User {
         this.optCode = optCode;
     }
 
-    // Construtores
-    public User() {}
-
-    public User(UUID id, String name, String email, String password, String enterpriseName, String optCode, LocalDateTime optExpiration) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-        this.enterpriseName = enterpriseName;
-        this.optCode = optCode;
-        this.optExpiration = optExpiration;
-    }
 
     // Getters e Setters
     public UUID getId() {
@@ -127,7 +156,7 @@ public class User {
         MASTER
     }
 
-    public enum Plan{
+    public enum Plan {
         FREE,
         STARTER,
         DELUX,
