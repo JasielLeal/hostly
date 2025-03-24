@@ -25,6 +25,10 @@ public class Reservations {
     @Column(nullable = false)
     private ZonedDateTime checkOut;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status =  Status.CONFIRMADA;
+
     @Column(nullable = false)
     private String room;
 
@@ -39,7 +43,8 @@ public class Reservations {
     private ZonedDateTime updatedAt = ZonedDateTime.now();
 
     @ManyToOne
-    @JoinColumn(name = "enterprise_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "enter" +
+            "prise_id", referencedColumnName = "id", nullable = false)
     private Enterprise enterpriseId;
 
     public Reservations() {
@@ -59,12 +64,20 @@ public class Reservations {
         this.clientCPF = clientCPF;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
+        this.status = Status.CONFIRMADA;
         this.room = room;
         this.origin = origin;
         this.paymentStatus = paymentStatus;
         this.createdAt = ZonedDateTime.now();
         this.updatedAt = ZonedDateTime.now();
         this.enterpriseId = enterpriseId;
+    }
+
+    public enum Status {
+        CONFIRMADA,
+        CANCELADA,
+        ANDAMENTO,
+        FINALIZADA,
     }
 
     public UUID getId() {
@@ -105,6 +118,14 @@ public class Reservations {
 
     public void setCheckOut(ZonedDateTime checkOut) {
         this.checkOut = checkOut;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getRoom() {
