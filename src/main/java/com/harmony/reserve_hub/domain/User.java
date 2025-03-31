@@ -30,7 +30,9 @@ public class User {
     @Column(nullable = false)
     private Role role = Role.MEMBER;  // Role padrão
 
-    private String enterpriseName;
+    @ManyToOne
+    @JoinColumn(name = "enterprise_id", referencedColumnName = "id", nullable = true)
+    private Enterprise enterprise;
 
     private String optCode;
 
@@ -40,7 +42,6 @@ public class User {
 
     private LocalDateTime updatedAt = LocalDateTime.now();
 
-
     // Construtores
     public User() {
     }
@@ -49,7 +50,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-        this.enterpriseName = null;
+        this.enterprise = null;
         this.optCode = null;
         this.optExpiration = null;
         this.createdAt = LocalDateTime.now();
@@ -58,59 +59,17 @@ public class User {
         this.role = Role.MEMBER;
     }
 
-
-
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public enum Role {
+        MEMBER,
+        MASTER
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public enum Plan {
+        FREE,
+        STARTER,
+        DELUX,
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public Plan getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Plan plan) {
-        this.plan = plan;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public LocalDateTime getOptExpiration() {
-        return optExpiration;
-    }
-
-    public void setOptExpiration(LocalDateTime optExpiration) {
-        this.optExpiration = optExpiration;
-    }
-
-    public String getOptCode() {
-        return optCode;
-    }
-
-    public void setOptCode(String optCode) {
-        this.optCode = optCode;
-    }
-
-
-    // Getters e Setters
     public UUID getId() {
         return id;
     }
@@ -143,23 +102,60 @@ public class User {
         this.password = password;
     }
 
-    public String getEnterpriseName() {
-        return enterpriseName;
+    public Plan getPlan() {
+        return plan;
     }
 
-    public void setEnterpriseName(String enterpriseName) {
-        this.enterpriseName = enterpriseName;
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 
-    public enum Role {
-        MEMBER,
-        MASTER
+    public Role getRole() {
+        return role;
     }
 
-    public enum Plan {
-        FREE,
-        STARTER,
-        DELUX,
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Enterprise getEnterprise() {
+        return enterprise;
+    }
+
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
+    }
+
+    public String getOptCode() {
+        return optCode;
+    }
+
+    public void setOptCode(String optCode) {
+        this.optCode = optCode;
+    }
+
+    public LocalDateTime getOptExpiration() {
+        return optExpiration;
+    }
+
+    public void setOptExpiration(LocalDateTime optExpiration) {
+        this.optExpiration = optExpiration;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
 

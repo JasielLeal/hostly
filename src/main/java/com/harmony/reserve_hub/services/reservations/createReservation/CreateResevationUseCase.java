@@ -2,7 +2,7 @@ package com.harmony.reserve_hub.services.reservations.createReservation;
 
 import com.harmony.reserve_hub.domain.Enterprise;
 import com.harmony.reserve_hub.domain.Reservations;
-import com.harmony.reserve_hub.repositories.ReservationsRespository;
+import com.harmony.reserve_hub.repositories.reservations.ReservationsRespository;
 import com.harmony.reserve_hub.repositories.enterprises.EnterprisesRepository;
 import org.springframework.stereotype.Service;
 

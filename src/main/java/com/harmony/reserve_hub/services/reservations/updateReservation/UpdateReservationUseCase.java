@@ -2,7 +2,7 @@ package com.harmony.reserve_hub.services.reservations.updateReservation;
 
 
 import com.harmony.reserve_hub.domain.Reservations;
-import com.harmony.reserve_hub.repositories.ReservationsRespository;
+import com.harmony.reserve_hub.repositories.reservations.ReservationsRespository;
 import com.harmony.reserve_hub.utils.CustomException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

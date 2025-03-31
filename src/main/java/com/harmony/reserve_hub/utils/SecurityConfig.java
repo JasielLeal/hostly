@@ -33,7 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/users/create").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/verifyopt").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/session").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
 
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Desativa gerenciamento de sessão

@@ -40,8 +40,10 @@ public class CreateEnterpriseUseCase {
             throw new CustomException("Enterprise already exists", HttpStatus.CONFLICT);
         });
 
-
         enterprisesRepository.save(enterprise);
+
+        user.setEnterprise(enterprise);
+        usersRepository.save(user);
     }
 
 
