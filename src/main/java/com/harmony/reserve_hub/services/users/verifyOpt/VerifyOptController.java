@@ -19,7 +19,5 @@ public class VerifyOptController {
     public void verifyOptUseCase(@RequestBody VerifyOptDTO verifyOptDTO){
 
         verifyOptUseCase.execute(verifyOptDTO);
-
-        return;
     }
 }

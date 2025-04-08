@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/users/create").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/verifyopt").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users/session").permitAll()
+                        .requestMatchers(HttpMethod.PUT, "/users/forgotpassword").permitAll()
                         .anyRequest().permitAll()
 
                 )
